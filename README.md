@@ -1,6 +1,6 @@
 # represent a solver for the queens problem
 
-## [your name here]'s remarks
+## Kaitlyn's remarks
 
 ### citations / worked with / received help from
 Replace this paragraph with a solid accounting of your sources.
