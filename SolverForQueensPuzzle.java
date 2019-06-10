@@ -57,21 +57,33 @@ public class SolverForQueensPuzzle {
          that starts -- and ends -- with that board.
      */
     private void recordSolutionsStarted() {
-
-        // Which has been requested, a base case or recursive case?
-            // your code here
-            // action(s) for base case(s)
-            System.out.println( "  for debugging: base case detected for..."
-                              + System.lineSeparator()
-                              + inProgress
-                              );
-
-            // action for recursive cases
-            // your code here
-            System.out.println( "  for debugging: recursive case detected for..."
-                              + System.lineSeparator()
-                              + inProgress
-                              );
+            if (inProgress.accept()) {
+              /*System.out.println( "  for debugging: base case detected for..."
+                                + System.lineSeparator()
+                                + inProgress
+                                );*/
+              solutions.add(inProgress);
+              nBoardsConsidered++;
+            } else {
+              if (inProgress.lastIsNg()) {
+                /*System.out.println( "  for debugging: base case detected for..."
+                                + System.lineSeparator()
+                                + inProgress
+                                );*/
+                nBoardsConsidered++;
+              } else {
+                for (int i = 0; i < inProgress.ranks(); i ++) {
+                  BoardForQueensPuzzle holder = new BoardForQueensPuzzle (inProgress);
+                  inProgress.populate(i);
+                  recordSolutionsStarted();
+                  inProgress = holder; //set the inProgress board to the board depopulated
+                }
+                /*System.out.println( "  for debugging: recursive case detected for..."
+                                  + System.lineSeparator()
+                                  + inProgress
+                                  );*/
+              }
+            }
     }
 
 
@@ -113,6 +125,7 @@ public class SolverForQueensPuzzle {
         for( BoardForQueensPuzzle b : solutions) {
             if( pictured++ == maxBoardPics) break;
             pic += System.lineSeparator() + b;
+            //pic += System.lineSeparator() + b.debug();
         }
         return pic;
     }

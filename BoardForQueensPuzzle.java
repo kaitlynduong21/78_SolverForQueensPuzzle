@@ -27,8 +27,16 @@ public class BoardForQueensPuzzle {
     public BoardForQueensPuzzle( BoardForQueensPuzzle old) {
         lastRankFilled = old.lastRankFilled;
         filesWithQueens = new int [old.ranks()];
-        for (int i = 0; i < lastRankFilled; i ++) filesWithQueens[i] = old.filesWithQueens[i];
+        for (int i = 0; i < lastRankFilled + 1; i ++) filesWithQueens[i] = old.filesWithQueens[i];
     }
+
+    /*public String debug() {
+      String s = "";
+      for (int i = 0; i < filesWithQueens.length; i++) {
+        s+= filesWithQueens[i] + ",";
+      }
+      return s;
+    }*/
 
 
 
